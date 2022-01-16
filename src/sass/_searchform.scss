@@ -1,0 +1,45 @@
+.search-form {
+  width: 100%;
+  background-color: royalblue;
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  position: sticky;
+  top: 0px;
+
+  & input {
+    height: 36px;
+    width: 270px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: none;
+
+    &:focus {
+      outline: none !important;
+    }
+  }
+
+  & button {
+    height: 36px;
+    width: 36px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: gainsboro;
+      span {
+        transform: scale(1.2);
+      }
+    }
+    & span {
+      height: 16px;
+      width: 16px;
+      background: url('../images/svg/magnifier-icon.svg') no-repeat;
+      // background-size: contain;
+      display: inline-block;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+/* ===== ===== Глобальный сброс стилей некоторым тэгам ===== ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: 100%;
+}
+
+/* Класс для скрытия зазоров у элемента img */
+.img-no-gap {
+  display: block;
+}
+
+/* временный класс для скрытия элементов */
+.hidden {
+  display: none;
+}
