@@ -2,6 +2,8 @@ const URL = 'https://pixabay.com/api/';
 const KEY = '25271966-e84b12380dfdddc75d181e677';
 const PER_PAGE = 40;
 
+const axios = require('axios').default;
+
 /* Example from https://pixabay.com/api/docs/ */
 
 // var API_KEY = '25271966-e84b12380dfdddc75d181e677';
@@ -29,4 +31,4 @@ function fetchImages(request) {
   });
 }
 
-export { fetchImages };
+export { fetchImages, PER_PAGE };

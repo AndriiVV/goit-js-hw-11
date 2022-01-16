@@ -58,3 +58,20 @@
     }
   }
 }
+
+.load-more {
+  // display: block;
+  display: none;
+  margin: 20px auto;
+  text-transform: uppercase;
+  color: white;
+  background-color: royalblue;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+
+  &:hover {
+    background-color: dodgerblue;
+  }
+}
