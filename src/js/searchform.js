@@ -1,5 +1,5 @@
 import Notiflix from 'notiflix';
-import { fetchImages, PER_PAGE } from './fetchimages';
+import { fetchImagesNew, PER_PAGE } from './fetchimages';
 const galleryNode = document.querySelector('.gallery');
 
 /* ===== ===== ===== ===== ===== */
@@ -20,7 +20,7 @@ refs.form.addEventListener('submit', e => {
   galleryNode.innerHTML = '';
   refs.button.style.display = 'none';
 
-  fetchImages(e.target.searchQuery.value.trim())
+  fetchImagesNew(e.target.searchQuery.value.trim())
     .then(data => {
       if (data.hits.length == 0) {
         Notiflix.Notify.failure(
@@ -47,7 +47,7 @@ refs.button.addEventListener('click', loadMore);
 
 function loadMore() {
   page += 1;
-  fetchImages(refs.form.searchQuery.value.trim(), page)
+  fetchImagesNew(refs.form.searchQuery.value.trim(), page)
     .then(data => {
       if (page === totalPages) {
         refs.button.style.display = 'none';

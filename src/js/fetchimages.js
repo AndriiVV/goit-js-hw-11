@@ -4,31 +4,47 @@ const PER_PAGE = 40;
 
 const axios = require('axios').default;
 
-/* Example from https://pixabay.com/api/docs/ */
+/* ===== ===== function with async/await axios.get() ===== ===== */
 
-// var API_KEY = '25271966-e84b12380dfdddc75d181e677';
-// var URL = 'https://pixabay.com/api/?key=' + API_KEY + '&q=' + encodeURIComponent('red roses');
-// $.getJSON(URL, function (data) {
-//   if (parseInt(data.totalHits) > 0)
-//     $.each(data.hits, function (i, hit) {
-//       console.log(hit.pageURL);
-//     });
-//   else console.log('No hits');
-// });
+const fetchImagesNew = async (request, page = 1) => {
+  const params = {
+    key: KEY,
+    q: request,
+    image_type: 'photo',
+    orientation: 'horizontal',
+    safesearch: true,
+    page: page,
+    per_page: PER_PAGE,
+  };
 
-// https://pixabay.com/api/?key=25271966-e84b12380dfdddc75d181e677&q=yellow+flowers&image_type=photo
+  const response = await axios.get(URL, { params });
+  return response.data;
+};
 
-/* */
+export { fetchImagesNew, PER_PAGE };
 
-function fetchImages(request, page) {
-  return fetch(
-    `${URL}?key=${KEY}&q=${request}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${PER_PAGE}`,
-  ).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response.json();
-  });
-}
+/* ===== ===== function with async/await fetch() ===== ===== */
 
-export { fetchImages, PER_PAGE };
+// const fetchImagesNew = async (request, page = 1) => {
+//   const response = await fetch(
+//     `${URL}?key=${KEY}&q=${request}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${PER_PAGE}`,
+//   );
+//   const data = await response.json();
+//   console.log(data);
+//   return data;
+// };
+
+/* ===== ===== function with fetch().then() ===== ===== */
+
+// function fetchImages(request, page = 1) {
+//   return fetch(
+//     `${URL}?key=${KEY}&q=${request}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${PER_PAGE}`,
+//   ).then(response => {
+//     if (!response.ok) {
+//       throw new Error(response.status);
+//     }
+//     return response.json();
+//   });
+// }
+
+/* ===== ===== ===== ===== ===== */
