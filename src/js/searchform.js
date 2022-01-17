@@ -31,8 +31,6 @@ refs.form.addEventListener('submit', e => {
         page = 1;
         totalPages = Math.ceil(data.totalHits / PER_PAGE);
 
-        // console.log(data);
-        console.log('Total pages: ', totalPages);
         updateGallery(data.hits, galleryNode);
 
         if (totalPages !== 1) {
