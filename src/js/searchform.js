@@ -20,8 +20,6 @@ refs.form.addEventListener('submit', e => {
   galleryNode.innerHTML = '';
   refs.button.style.display = 'none';
 
-  // console.log(e.target.searchQuery.value);
-
   fetchImages(e.target.searchQuery.value.trim())
     .then(data => {
       if (data.hits.length == 0) {
@@ -34,8 +32,8 @@ refs.form.addEventListener('submit', e => {
         totalPages = Math.ceil(data.totalHits / PER_PAGE);
 
         // console.log(data);
-        console.log(totalPages);
-        createGallery(data.hits, galleryNode);
+        console.log('Total pages: ', totalPages);
+        updateGallery(data.hits, galleryNode);
 
         if (totalPages !== 1) {
           refs.button.style.display = 'block';
@@ -45,7 +43,22 @@ refs.form.addEventListener('submit', e => {
     .catch(error => Notiflix.Notify.failure(error));
 });
 
-function createGallery(data, node) {
+refs.button.addEventListener('click', loadMore);
+
+function loadMore() {
+  page += 1;
+  fetchImages(refs.form.searchQuery.value.trim(), page)
+    .then(data => {
+      if (page === totalPages) {
+        refs.button.style.display = 'none';
+        Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+      }
+      updateGallery(data.hits, galleryNode);
+    })
+    .catch(error => Notiflix.Notify.failure(error));
+}
+
+function updateGallery(data, node) {
   const markup = data
     .map(({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => {
       return (
@@ -65,29 +78,7 @@ function createGallery(data, node) {
     })
     .join('');
 
-  node.innerHTML = markup;
+  node.insertAdjacentHTML('beforeend', markup);
 }
-
-/* ===== ===== ===== ===== ===== */
-
-// Card template
-
-/* <div class="photo-card">
-  <img src="" alt="" loading="lazy" />
-  <div class="info">
-    <p class="info-item">
-      <b>Likes</b>
-    </p>
-    <p class="info-item">
-      <b>Views</b>
-    </p>
-    <p class="info-item">
-      <b>Comments</b>
-    </p>
-    <p class="info-item">
-      <b>Downloads</b>
-    </p>
-  </div>
-</div>; */
 
 /* ===== ===== ===== ===== ===== */

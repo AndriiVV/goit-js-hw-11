@@ -20,9 +20,9 @@ const axios = require('axios').default;
 
 /* */
 
-function fetchImages(request) {
+function fetchImages(request, page) {
   return fetch(
-    `${URL}?key=${KEY}&q=${request}&image_type=photo&orientation=horizontal&safesearch=true&per_page=${PER_PAGE}`,
+    `${URL}?key=${KEY}&q=${request}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=${PER_PAGE}`,
   ).then(response => {
     if (!response.ok) {
       throw new Error(response.status);
